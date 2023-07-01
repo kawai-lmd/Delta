@@ -1,3 +1,8 @@
+# Python環境
+参考: \
+https://qiita.com/KRiver1/items/c1788e616b77a9bad4dd
+
+かなりわかりやすく環境比較が行われているのは上記のサイト。
 ## 1. pip
 
 参考：\
@@ -43,7 +48,7 @@ Requires: matplotlib, opencv-python, pandas, Pillow, psutil, PyYAML, requests, s
 Required-by:
 ```
 
-`pip show ultralytics`とやったときの挙動が上記。
+`pip show ultralytics`とやったときの挙動が上記。すでにminiconda環境をインストールしているためminiconda3配下にパッケージが管理されていることがわかる。
 
 ## 2. conda(推奨)
 参考: \
@@ -76,3 +81,32 @@ yolo                     /Users/masato/miniconda3/envs/yolo
 ```
 
 baseが基本的に何でもできるように用意してあり、yoloはyoloのコードを実行するときに使い、lstmは時系列分析をしようとしたときに用意したもの。
+
+## 3. pipenv
+参考: \
+https://qiita.com/y-tsutsu/items/54c10e0b2c6b565c887a \
+https://qiita.com/KRiver1/items/c1788e616b77a9bad4dd \
+https://zenn.dev/nekoallergy/articles/py-env-pipenv01
+
+>新しいプロジェクトで仮想環境を作りたければpipenv installとするだけ、git cloneしてきたプロジェクトに置いてあったPipfileを読み込むときもpipenv installとするだけ、pipの代わりに使うときもpipenv install <package-name>とpipをpipenvに置き換えるだけ。大変わかりやすい。(引用：https://qiita.com/KRiver1/items/c1788e616b77a9bad4dd)
+
+### 3.1.演習
+[こちらの記事](https://zenn.dev/nekoallergy/articles/py-env-pipenv01)の演習がかなりわかりやすいのでもしもpipenv環境を選択するのであればこれに沿って環境を構築してみることをおすすめする。(他のpip, condaでも同じ環境を作れるかのテストをやってもらうのもありかな、独り言です。)
+
+## 4. docker環境(簡易説明)
+<!--
+TODO docker環境について金子要請を達成。
+1. dockerのありがたいところ
+2. dockerをどのように使っているか(主に研究室)
+3. dockerの簡易版使用方法
+    1. docker build path/to/dockerfile
+    2. docker run -it image_name
+4. dockerの生成、起動テンプレート
+    1. dockerfile
+    2. run.sh
+5. yolo環境の場合
+    1. docker hubからイメージを探し出す
+    2. イメージを起動する(コンテナ)
+    3. コンテナ内でコードを実行してみる
+    4. コンテナを終了する
+-->
