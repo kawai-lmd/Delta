@@ -94,6 +94,42 @@ https://zenn.dev/nekoallergy/articles/py-env-pipenv01
 [こちらの記事](https://zenn.dev/nekoallergy/articles/py-env-pipenv01)の演習がかなりわかりやすいのでもしもpipenv環境を選択するのであればこれに沿って環境を構築してみることをおすすめする。(他のpip, condaでも同じ環境を作れるかのテストをやってもらうのもありかな、独り言です。)
 
 ## 4. docker環境(簡易説明)
+
+dockerをとりあえず使って見る場合は、使いたいドッカーイメージを[docker hub](https://hub.docker.com/)から持ってくる。今回はyoloを扱うため[ultralyticsのページ](https://hub.docker.com/r/ultralytics/ultralytics)を参照する。開けばわかるが、Docker Pull Commandという部分のすぐ下にコードが記載されており、それがイメージをローカルに持ってくるコマンドである。
+
+```bash
+docker pull ultralytics/ultralytics
+```
+
+そして、docker imageを起動する場合、まずは持ってきたimageのIMAGE IDを確認する。
+```
+docker images
+
+# REPOSITORY                                                    TAG            IMAGE ID       CREATED       SIZE
+# ultralytics/ultralytics                                       latest-arm64   b05691b57d4f   2 weeks ago   1.55GB
+# chat-love                                                     latest         02ac8d2e56c3   6 weeks ago   1.1GB
+# 928590127839.dkr.ecr.ap-southeast-2.amazonaws.com/chat-love   latest         02ac8d2e56c3   6 weeks ago   1.1GB
+```
+持ってきたimageがb05691b57d4fであるため、その情報をもとに以下のコマンドを入力。
+
+```
+docker run -it \
+--volume $PWD:/workdir \
+--rm \
+--workdir /workdir \
+b05691b57d4f bash
+```
+
+詳しい説明はここではしないが、最小コマンドは以下
+```
+docker run -it b05691b57d4f bash
+```
+そこに、ローカルのデータをコンテナ内に反映させるvolumeコマンド、コンテナをexitしたときにコンテナを消去するrmコマンド、コンテナに入る際のディレクトリを指定するworkdirコマンドで細かい調整をしている。
+
+文章化をすると、b05691b57d4fというイメージを実行してコンテナに入り込むが、その際にカレントディレクトリ($PWD)のデータをコンテナ内の/workdirというディレクトリに配置し、そこにアクセスする。コンテナから抜け出した際にそのコンテナの大きなデータがパソコンに残らないように消去を行う。
+
+*興味がある人は/docker_toolという自分が使っているdockerのツールがあるので見てみてください。Dockerfileは細かく環境を作りたい場合に使用しています。例の場合、ubuntuのnvidiaでpythonが動くようなimageを作成しています。そして、run_server.shでは`bash run_server.sh`と打つだけで面倒なコマンド無しでコンテナの起動からその保存や削除ができるようにしています。
+
 <!--
 TODO docker環境について金子要請を達成。
 1. dockerのありがたいところ
