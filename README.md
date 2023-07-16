@@ -3,7 +3,7 @@
 ## YOLO関連
 [YOLO + StrongSORT](notebook/YOLOとStrongSORT.ipynb) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kawai-lmd/Delta/blob/main/notebook/YOLO%E3%81%A8StrongSORT.ipynb)
 
-#　独自演習用教材
+# 独自演習用教材
 [こちらのリンク](https://github.com/machine-perception-robotics-group/MPRGDeepLearningLectureNotebook/tree/master)は非常に有名なAI学習用リポジトリなので、気が向いたらぜひ手を伸ばしてみてほしい。
 
 ## Google Colaboratory・Pythonの使い方（チュートリアル編）
